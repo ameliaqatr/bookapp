@@ -10,13 +10,19 @@ class BooksController extends BaseController
 {
     public function index()
     {
-    return Book::all();
+        return Book::all();
     }
 
     public function show($id)
     {
-    $book = Book::find($id);
-    return $book;
+        $book = Book::find($id);
+        if($book){
+            return $book;
+        } else {
+            return response()->json([
+                'message' => 'Book Not Found'
+            ], 404);
+        }
     }
 }
 
